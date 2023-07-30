@@ -1,13 +1,16 @@
 """
 PROJETO DE VENDAS EM SUPERMERCADOS
 """
+import os
 from dash import Dash, Input, Output, html, dcc
 import pandas as pd
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 
-data = pd.read_csv('datasets/supermarket_sales.csv')
+cwd = os.path.dirname(os.path.realpath(__file__))
+
+data = pd.read_csv(os.path.join(cwd, 'datasets/supermarket_sales.csv'))
 data['Date'] = pd.to_datetime(data['Date'])
 
 
@@ -41,12 +44,16 @@ app.layout = html.Div(
 
 # ========== CALLBACKS ========== #
 @app.callback(
-    [Output(component_id='city-fig', component_property='figure'),
-    Output(component_id='pay-fig', component_property='figure'),
-    Output(component_id='income-per-product-fig', component_property='figure')],
+    [
+        Output(component_id='city-fig', component_property='figure'),
+        Output(component_id='pay-fig', component_property='figure'),
+        Output(component_id='income-per-product-fig', component_property='figure')
+    ],
 
-    [Input(component_id='check_city', component_property='value'),
-    Input(component_id='radio_var', component_property='value')]
+    [
+        Input(component_id='check_city', component_property='value'),
+        Input(component_id='radio_var', component_property='value')
+    ]
 )
 def render_graph(cities, data_var):
     operation = np.sum if data_var == 'gross income' else np.mean

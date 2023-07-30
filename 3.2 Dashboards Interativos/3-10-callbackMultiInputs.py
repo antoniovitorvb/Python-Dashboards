@@ -101,6 +101,16 @@ def update_graph(
         hovermode='closest'
     )
 
+    fig.update_xaxes(
+        title = x_axis_col,
+        type = 'linear' if x_axis_type == 'Linear' else 'log'
+    )
+
+    fig.update_yaxes(
+        title = y_axis_col,
+        type = 'linear' if y_axis_type == 'Linear' else 'log'
+    )
+
     return fig
 
 if __name__ == '__main__':

@@ -2,7 +2,6 @@
 CALLBACKS EM CADEIA
 """
 
-import dash
 from dash import Dash, html, dcc, Input, Output, State
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -40,7 +39,7 @@ e a alteração em 'cities' irá mostrar o output em 'display-selected-values'
     Input(component_id='countries', component_property='value')
 )
 def city_options(selected_country):
-    return [{'label': i, 'value': i} for i in all_options[selected_country]]
+    return [{'label': city, 'value': city} for city in all_options[selected_country]]
 
 # Pega a cidade selecionada das que foram disponibilizadas em city_options()
 @app.callback(
@@ -48,7 +47,8 @@ def city_options(selected_country):
     Input(component_id='cities', component_property='options')
 )
 def city_value(available_options):
-    return available_options[0]['value']
+    # print(available_options)
+    return available_options[0]['value'] # chooses 1st city option
 
 # Mostra os valores selecionados para 'countries' e 'cities'
 @app.callback(

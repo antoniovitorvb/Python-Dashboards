@@ -68,7 +68,7 @@ def update_stored_data(value):
     """
     filtered_df = df[df['score'] >= value]
     # return 'Quantidade de alunos com nota igual ou superior a {}: {}'.format(value, len(filtered_df))
-    return filtered_df.to_dict()
+    return filtered_df.to_dict() # dcc.Store does not work well with DataFrames, therefore, the dict
 
 @app.callback(
     Output(component_id='stored-qtd-aluno', component_property='children'),

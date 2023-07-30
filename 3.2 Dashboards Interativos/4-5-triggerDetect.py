@@ -11,7 +11,10 @@ app.layout = html.Div([
     html.Button(children='Button 2', id='b2'),
     html.Button(children='Button 3', id='b3'),
 
-    html.Div(id='container-ctx-example')
+    html.Div(
+        id='container-ctx-example',
+        style={'text-color': 'red'}
+    )
 ])
 
 @app.callback(
@@ -23,14 +26,13 @@ app.layout = html.Div([
 # def display(btn1, btn2, btn3):
 #     import pdb
 #     pdb.set_trace()
+    # return ''
 
-#     return ''
 def display(btn1, btn2, btn3):
     trig_id = callback_context.triggered[0]['prop_id'].split('.')[0]
 
     if trig_id == 'b1':
-        # Operações que você quiser com base em qual trig ativou o callback
-        pass
+        return 'Specific action for {}'.format(trig_id)
 
     return trig_id
 
