@@ -1,12 +1,12 @@
 """
-PROJETO DE VENDAS EM SUPERMERCADOS
+UTILIZANDO TEMAS DO DASH-BOOTSTRAP-COMPONENTS
 """
 import os
 from dash import Dash, Input, Output, html, dcc
 import pandas as pd
 import numpy as np
 import plotly.express as px
-import plotly.graph_objects as go
+import dash_bootstrap_components as dbc
 
 cwd = os.path.dirname(os.path.realpath(__file__))
 
@@ -14,7 +14,7 @@ data = pd.read_csv(os.path.join(cwd, 'datasets/supermarket_sales.csv'))
 data['Date'] = pd.to_datetime(data['Date'])
 
 
-app = Dash(__name__)
+app = Dash(external_stylesheets = [dbc.themes.DARKLY])
 server = app.server
 
 # ========== LAYOUT ========== #
@@ -71,7 +71,8 @@ def render_graph(cities, data_var):
     )
     city_fig.update_layout(
         margin=dict(l=0, r=0, t=20, b=20),
-        height=400
+        height=400,
+        template = 'plotly_dark'
     )
 
     pay_fig = px.bar(
@@ -81,7 +82,8 @@ def render_graph(cities, data_var):
     )
     pay_fig.update_layout(
         margin=dict(l=0, r=0, t=20, b=20),
-        height=200
+        height=200,
+        template = 'plotly_dark'
     )
 
     prod_income_fig = px.bar(
@@ -91,7 +93,8 @@ def render_graph(cities, data_var):
     )
     prod_income_fig.update_layout(
         margin=dict(l=0, r=0, t=20, b=20),
-        height=500
+        height=500,
+        template = 'plotly_dark'
     )
 
     return city_fig, pay_fig, prod_income_fig
