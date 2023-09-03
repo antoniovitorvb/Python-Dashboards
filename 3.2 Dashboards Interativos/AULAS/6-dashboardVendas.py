@@ -153,4 +153,4 @@ def render_graph(cities, data_var):
 
 # ========== RUN SERVER ========== #
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=True, port=8051)
